@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --strap: 0%;
+
+}
+
+div.wraper {
+    font-family: 'Roboto Mono', monospace;
+    text-transform: uppercase;
+    font-size: 3rem;
+    color: #4CAF50;
+    width: 90%;
+    display: flex;
+    flex-wrap: nowrap;
+    height: 80vh;
+    justify-content: center;
+    margin: 0 auto;
+    min-width: 320px;
+}
+
+main {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+section.clue,
+section.letters,
+section.button {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+section.clue {
+    height: 30%;
+}
+
+section.letters {
+    height: 50%;
+}
+
+section.button {
+    height: 20%;
+}
+
+div.cluediv,
+div.letterdiv {
+    font-size: 1.5rem;
+    border: 2px solid #4CAF50;
+    margin-left: 1%;
+    margin-bottom: 1%;
+    width: 8vh;
+    height: 8vh;
+    line-height: 8vh;
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: 10%;
+    cursor: pointer;
+}
+
+div.cluediv {
+    cursor: default;
+}
+
+div.letterdiv:hover {
+    background-color: #4CAF50;
+    color: white;
+
+}
+
+
+div.clicked {
+    font-size: 1.5rem;
+    margin-left: 1%;
+    margin-bottom: 1%;
+    width: 8vh;
+    height: 8vh;
+    line-height: 8vh;
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: 10%;
+    border: 2px solid grey;
+    color: white;
+    background-color: grey;
+    cursor: default;
+}
+
+
+
+section.button button {
+
+    background-color: transparent;
+    font-weight: bold;
+    border: 2px solid #4CAF50;
+    color: #4CAF50;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+section.button button:hover {
+    color: white;
+    background-color: #4CAF50;
+
+}
+
+
+
+section.bar {
+    width: 10%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.barcontainer {
+    border: 2px solid #4CAF50;
+    width: 60%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+div.barprogress {
+    width: 100%;
+    background-color: #4CAF50;
+    height: var(--strap);
+}
