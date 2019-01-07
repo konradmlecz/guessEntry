@@ -9,6 +9,11 @@
 
 }
 
+body {
+    background-color: rgb(6, 54, 8);
+}
+
+
 div.wraper {
     font-family: 'Roboto Mono', monospace;
     text-transform: uppercase;
@@ -17,7 +22,7 @@ div.wraper {
     width: 90%;
     display: flex;
     flex-wrap: nowrap;
-    height: 80vh;
+    height: 100vh;
     justify-content: center;
     margin: 0 auto;
     min-width: 320px;
@@ -48,7 +53,11 @@ section.clue {
 }
 
 section.letters {
+    align-self: center;
+    display: flex;
+    justify-content: center;
     height: 50%;
+    width: 80%;
 }
 
 section.button {
@@ -117,7 +126,6 @@ section.button button:hover {
     background-color: #4CAF50;
 
 }
-
 
 
 section.bar {

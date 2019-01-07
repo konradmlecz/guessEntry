@@ -20,17 +20,53 @@ class Gallows {
 
 class Clue {
     constructor() {
-        this.words = ["this", "home", "youtube", "yellow", "homeland", "dotted", "gameover", "array", "green", "trump", "simple", "section", "images", "meaningful", "crazy"]
+
+        this.words = ["this", "home", "youtube", "yellow", "homeland", "dotted", "gameover", "array", "green", "trump", "simple", "section", "images", "meaningful", "crazy"];
+        this.wordnik;
         this.sectionClue = document.querySelector('[data-key="worddivs"]')
         this.indexOfValidLetter = 0;
         this.actualWord;
+        // this.flagWordnik = true
     }
+    getRandomWordWithWordnik() {
+        const that = this;
+        fetch(
+                'http://api.wordnik.com/v4/words.json/randomWord?api_key=0c89ebb9418402dbb600f0c1318037b282df00fe112e991b4'
+            )
+            .then(function (response) {
+                return response.json();
+
+            })
+            .then(function (myJson) {
+
+                const wordName = myJson.word
+                that.wordnik = wordName.toLowerCase();
+                console.log(that.wordnik);
+
+                const regex = /\W/gi;
+                if (regex.test(that.wordnik)) {
+                    console.log("hit");
+                    that.getRandomWordWithWordnik()
+                } else {
+                    console.log("no");
+                }
+
+            });
+
+    }
+
     getRandomWord() {
-        return this.words[Math.floor(Math.random() * this.words.length)]
+        if (this.wordnik) {
+            return this.wordnik
+        } else {
+            return this.words[Math.floor(Math.random() * this.words.length)]
+        }
+
     }
     displayWord() {
         this.sectionClue.innerHTML = ""
         this.actualWord = this.getRandomWord();
+        console.log(this.actualWord);
         for (let i = 0; i < this.actualWord.length; i++) {
             const div = document.createElement("div");
             div.classList.add("cluediv");
@@ -43,13 +79,13 @@ class Clue {
         return regex.test(this.actualWord);
     }
     showLetter(letterHited) {
-        const divss = document.querySelectorAll('.cluediv')
+        const divsClue = document.querySelectorAll('.cluediv')
         for (let i = 0; i < this.actualWord.length; i++) {
-            if (letterHited == this.actualWord.charAt(i)) {
-                divss[i].textContent = this.actualWord.charAt(i);
+            const regex = RegExp(`${letterHited}`, 'gi')
+            if (regex.test(this.actualWord.charAt(i))) {
+                divsClue[i].textContent = this.actualWord.charAt(i);
                 this.indexOfValidLetter++;
             }
-
         }
     }
     getActualWord() {
@@ -68,7 +104,7 @@ class Game {
         this.start.addEventListener("click", this.startGame.bind(this));
         this.clue = new Clue();
         this.gallows = new Gallows();
-        this.letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+        this.letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "'"]
         this.sectionLetters = document.querySelector('[data-key="letterdivs"]')
         this.createLetter = function () {
             this.sectionLetters.innerHTML = "";
@@ -80,17 +116,15 @@ class Game {
                     once: true
                 })
                 this.sectionLetters.appendChild(div);
-
             }
-
         }
-
+        this.startGame();
     }
     startGame() {
+        this.clue.getRandomWordWithWordnik()
         this.clue.displayWord();
         this.gallows.resetBar();
         this.createLetter()
-
     }
     choiceChar(e) {
 
@@ -107,10 +141,10 @@ class Game {
         e.target.classList.remove("letterdiv")
         e.target.classList.add("clicked")
         if (this.gallows.checkBarProgress()) {
-            this.sectionLetters.innerHTML = `<p>Przegrałeś!!! Hasło to: "${this.clue.getActualWord()}"</p>`
+            this.sectionLetters.innerHTML = `<p>LOSS!!! Entry is: "${this.clue.getActualWord()}"</p>`
         }
         if (this.clue.checkIndexValidLetter()) {
-            this.sectionLetters.innerHTML = `<p>Wygrałeś!!! Hasło to faktycznie: "${this.clue.getActualWord()}"</p>`
+            this.sectionLetters.innerHTML = `<p>WIN!!! Entry is obviously: "${this.clue.getActualWord()}"</p>`
         }
 
     }
