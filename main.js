@@ -26,13 +26,12 @@ class Clue {
         this.sectionClue = document.querySelector('[data-key="worddivs"]')
         this.indexOfValidLetter = 0;
         this.actualWord;
-        // this.flagWordnik = true
     }
     getRandomWordWithWordnik() {
         const that = this;
         fetch(
-                'http://api.wordnik.com/v4/words.json/randomWord?api_key=0c89ebb9418402dbb600f0c1318037b282df00fe112e991b4'
-            )
+            'http://api.wordnik.com/v4/words.json/randomWord?api_key=0c89ebb9418402dbb600f0c1318037b282df00fe112e991b4'
+        )
             .then(function (response) {
                 return response.json();
 
@@ -41,14 +40,13 @@ class Clue {
 
                 const wordName = myJson.word
                 that.wordnik = wordName.toLowerCase();
-                console.log(that.wordnik);
 
                 const regex = /\W/gi;
                 if (regex.test(that.wordnik)) {
-                    console.log("hit");
+
                     that.getRandomWordWithWordnik()
                 } else {
-                    console.log("no");
+
                 }
 
             });
@@ -66,7 +64,6 @@ class Clue {
     displayWord() {
         this.sectionClue.innerHTML = ""
         this.actualWord = this.getRandomWord();
-        console.log(this.actualWord);
         for (let i = 0; i < this.actualWord.length; i++) {
             const div = document.createElement("div");
             div.classList.add("cluediv");
@@ -148,9 +145,6 @@ class Game {
         }
 
     }
-
-
-
 }
 
 const game = new Game();

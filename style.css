@@ -15,17 +15,21 @@ body {
 
 
 div.wraper {
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
     font-family: 'Roboto Mono', monospace;
     text-transform: uppercase;
-    font-size: 3rem;
+    font-size: 5vh;
     color: #4CAF50;
-    width: 90%;
     display: flex;
     flex-wrap: nowrap;
-    height: 100vh;
+    width: 80%;
+    height: 70vh;
     justify-content: center;
     margin: 0 auto;
-    min-width: 320px;
+    
 }
 
 main {
@@ -65,8 +69,9 @@ section.button {
 }
 
 div.cluediv,
-div.letterdiv {
-    font-size: 1.5rem;
+div.letterdiv,
+div.clicked {
+    font-size: 3vh;
     border: 2px solid #4CAF50;
     margin-left: 1%;
     margin-bottom: 1%;
@@ -89,17 +94,7 @@ div.letterdiv:hover {
 
 }
 
-
 div.clicked {
-    font-size: 1.5rem;
-    margin-left: 1%;
-    margin-bottom: 1%;
-    width: 8vh;
-    height: 8vh;
-    line-height: 8vh;
-    text-align: center;
-    text-transform: uppercase;
-    border-radius: 10%;
     border: 2px solid grey;
     color: white;
     background-color: grey;
@@ -114,10 +109,10 @@ section.button button {
     font-weight: bold;
     border: 2px solid #4CAF50;
     color: #4CAF50;
-    padding: 15px 32px;
+    padding: 1% 2%;
     text-align: center;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 3vh;
     cursor: pointer;
 }
 
@@ -149,4 +144,49 @@ div.barprogress {
     width: 100%;
     background-color: #4CAF50;
     height: var(--strap);
+}
+
+
+@media screen and (max-width:1024px){
+
+    div.cluediv,
+    div.letterdiv,
+    div.clicked{
+        font-size: 2.5vh;
+        width: 6.5vh;
+        height: 6.5vh;
+        line-height: 6.5vh;
+    }
+
+}
+
+
+@media screen and (max-width:620px){
+
+    div.cluediv,
+    div.letterdiv,
+    div.clicked{
+        font-size: 2vh;
+        width: 5.5vh;
+        height: 5.5vh;
+        line-height: 5.5vh;
+    }
+
+    section.button button {
+        font-size: 2vh;
+ 
+    }
+}
+
+@media screen and (max-width:400px){
+
+    div.cluediv,
+    div.letterdiv,
+    div.clicked{
+        font-size: 1.7vh;
+        width: 4.5vh;
+        height: 4.5vh;
+        line-height: 4.5vh;
+    }
+
 }
